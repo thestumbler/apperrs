@@ -48,7 +48,6 @@ enum tagCOMIO_CODE {
 
 int meter_test( int *errs, int numerrs ) {
   int i;
-  apperr_return_clear();
   for(i=0;i<numerrs;i++) {
     switch(errs[i]) {
       case 1:
@@ -81,7 +80,6 @@ int meter_test( int *errs, int numerrs ) {
         break;
     }
   }
-  return apperr_return_int();
 }
 
 int main( int argc, char *argv[] ) {
