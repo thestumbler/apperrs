@@ -122,6 +122,14 @@ static APPERR ae[APPERR_MAX_STACK];
 static int ptr=0;
 
 void apperr_init( void ) {
+  for( ptr=0; ptr<APPERR_MAX_STACK; ptr++) {
+    ae[ptr].app = 0;
+    ae[ptr].num = 0;
+    ae[ptr].str = NULL;
+    ae[ptr].file = NULL;
+    ae[ptr].func = NULL;
+    ae[ptr].line = 0;
+  }
   ptr=0;
 }
 
@@ -138,7 +146,7 @@ void apperr_push( char *app, int num, char *str,
 
 bool apperr_okay( void ) { 
   if(ptr==0) return true; // if nothing on the stack, no error
-  return ae[ptr].num == 0;
+  return ae[ptr-1].num == 0;
 }
 
 APPERR *apperr_pop( void ) {
