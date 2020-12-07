@@ -1,4 +1,2 @@
-gcc -c apperr.c
-ar -rcs libapperr.a apperr.o
-sudo cp libapperr.a /usr/local/lib
-sudo cp apperr.h /usr/local/include
+g++ -std=c++11 -c src/apperrs.cpp -o build/apperrs.o
+ar rcs lib/libapperrs.a build/apperrs.o
