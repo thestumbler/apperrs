@@ -7,8 +7,8 @@
 #include "apperrs.hpp"
 using namespace std;
 
-#define DEFINE_MANUALLY
-//#define DEFINE_USING_MACRO_TABLE
+//#define DEFINE_MANUALLY
+#define DEFINE_USING_MACRO_TABLE
 // #define NO_ERROR_STRINGS
 
 class Meter {
@@ -28,7 +28,7 @@ class Meter {
       F( range_under, "Measured valus is under-range" ) \
       F( range_over, "Measured valus is over-range" ) \
     /**/ 
-    #define EXTRACT_ENUMS( VARNAME, STRING ) VARNAME,
+    #define EXTRACT_ENUMS( ID, STRING ) ID,
     enum class Eid { 
       okay=0,
       METER_ERRORS(EXTRACT_ENUMS)

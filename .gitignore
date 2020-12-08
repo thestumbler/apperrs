@@ -4,3 +4,6 @@
 *.a
 test
 attic
+.vs/**
+**/Debug/**
+**/x64/**
