@@ -16,7 +16,7 @@ class Balloon {
 
     //===APPERR BEG===========================================================
     //   error number, error string
-    #define METER_ERRORS(F) \
+    #define BALLOON_ERRORS(F) \
       F( gas_helium, "filled with Helium" ) \
       F( gas_air, "filled with air" ) \
       F( gas_hydrogen, "danger, filled with hydrogen" ) \
@@ -29,14 +29,14 @@ class Balloon {
     #define EXTRACT_ENUMS( VARNAME, STRING ) VARNAME,
     enum class Eid { 
       okay=0,
-      METER_ERRORS(EXTRACT_ENUMS)
+      BALLOON_ERRORS(EXTRACT_ENUMS)
       size
     };
     #undef EXTRACT_ENUMS
     #define EXTRACT_DEFINES( ID, STRING )  STRING,
     const string errors[(int)Eid::size]={
       "Okay",
-      METER_ERRORS(EXTRACT_DEFINES)
+      BALLOON_ERRORS(EXTRACT_DEFINES)
     };
     #undef EXTRACT_DEFINES
     //===APPERR END===========================================================

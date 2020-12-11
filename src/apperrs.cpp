@@ -49,33 +49,46 @@ string Message::print_long( void ) {
 
     
 Apperrs::Apperrs(void) {
-  apperrs.clear();
+  queue.clear();
 }
 
 int Apperrs::push( string appname, int errnum, string message, 
                     string filename, string funcname, int lineno ) {
-   apperrs.push_back( Message( appname, errnum, message, filename, funcname, lineno ) );
+   queue.push_back( Message( appname, errnum, message, filename, funcname, lineno ) );
    return errnum;
 }
 
 Message Apperrs::pop( void ) {
   Message m;
-  m = apperrs.back();
-  apperrs.pop_back();
+  m = queue.back();
+  queue.pop_back();
   return m;
 }
 
 bool Apperrs::all_okay( void ) { 
-  return apperrs.size() == 0;
+  return queue.size() == 0;
 }
 
 string Apperrs::print_all( void ) {
   ostringstream out;
-  while( apperrs.size() != 0 ) { // suck the stack dry
-    out << apperrs.back().print_oneline();
-    apperrs.pop_back();
+  while( queue.size() != 0 ) { // suck the stack dry
+    out << queue.back().print_oneline();
+    queue.pop_back();
   }
   return out.str();
 }
 
+string Apperrs::print_messages( void ) {
+  ostringstream out;
+  for(auto msg : queue) {
+    if( msg.errnum != 0 ) continue;
+    if( msg.message == "okay" ) continue;
+    out << msg.print_oneline();
+  }
+  return out.str();
+}
+
+void Apperrs::clear( void ) {
+  queue.clear();
+}
 

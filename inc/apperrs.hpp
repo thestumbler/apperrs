@@ -32,7 +32,7 @@ class Apperrs { // vector of Apperr
       string message;
     };
 
-    vector<Message> apperrs;
+    vector<Message> queue;
     Apperrs();
   
     int push( string appname, int errnum, string message, 
@@ -40,6 +40,8 @@ class Apperrs { // vector of Apperr
     Message pop( void );
     bool all_okay( void );
     string print_all( void );
+    string print_messages( void );
+    void clear( void );
 
 };
 

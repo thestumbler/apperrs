@@ -1,0 +1,12 @@
+prefix=/usr/local
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: apperrs
+Description: Error-reporting module
+URL: https://github.com/thestumbler/apperrs.git
+Requires.private: 
+Version: 0.1.1
+Libs: -L${libdir} -lapperrs
+Cflags: -I${includedir}
