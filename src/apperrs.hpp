@@ -17,7 +17,7 @@ class Message {
 
     Message( string _a="", int _e=0, string _m="", 
              string _f="", string _c="", int _l=0 );
-    string print_oneline( void );
+    string print_oneline( string prefix = "" );
     string print_long( void );
     string print( void );
     bool is_okay( void );
@@ -39,8 +39,8 @@ class Apperrs { // vector of Apperr
                string filename, string funcname, int lineno );
     Message pop( void );
     bool all_okay( void );
-    string print_all( void );
-    string print_messages( void );
+    string print_all( string prefix = "" );
+    string print_messages( string prefix = "" );
     void clear( void );
 
 };

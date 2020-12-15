@@ -25,8 +25,9 @@ Message::Message(
 
 }
 
-string Message::print_oneline( void ) {
+string Message::print_oneline( string prefix ) {
   ostringstream out;
+  out << prefix;
   out << appname << ":" << errnum;
   out << " F:" << filename;
   out << " N:" << funcname;
@@ -69,21 +70,21 @@ bool Apperrs::all_okay( void ) {
   return queue.size() == 0;
 }
 
-string Apperrs::print_all( void ) {
+string Apperrs::print_all( string prefix ) {
   ostringstream out;
   while( queue.size() != 0 ) { // suck the stack dry
-    out << queue.back().print_oneline();
+    out << queue.back().print_oneline(prefix);
     queue.pop_back();
   }
   return out.str();
 }
 
-string Apperrs::print_messages( void ) {
+string Apperrs::print_messages( string prefix ) {
   ostringstream out;
   for(auto msg : queue) {
     if( msg.errnum != 0 ) continue;
     if( msg.message == "okay" ) continue;
-    out << msg.print_oneline();
+    out << msg.print_oneline(prefix);
   }
   return out.str();
 }
